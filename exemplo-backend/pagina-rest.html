@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório Comercial — exemplo com backend REST</title>
+</head>
+<body style="margin:0;background:#ecebe6">
+  <div style="max-width:1440px;margin:0 auto;padding:16px">
+    <relatorio-comercial id="painel" titulo="Relatório Comercial"></relatorio-comercial>
+  </div>
+
+  <script src="../relatorio-comercial.js"></script>
+  <script>
+    document.getElementById('painel').configure({
+      adapter: RelatorioComercial.createRestAdapter({
+        baseUrl: '/api/relatorio-comercial',
+        // Se a plataforma usa token, devolva os cabeçalhos aqui (pode ser async):
+        // headers: async () => ({ Authorization: 'Bearer ' + await obterToken() }),
+      }),
+      theme: 'light',
+    });
+  </script>
+</body>
+</html>

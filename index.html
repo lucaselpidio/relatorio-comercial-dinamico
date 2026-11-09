@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório Comercial Dinâmico — demonstração</title>
+  <meta name="description" content="Painel comercial com metas, funil de vendas por agente e auditoria de dados. Demonstração com dados 100% fictícios.">
+  <style>
+    /* Estilos da página de demonstração. Nada aqui afeta o painel, que vive em um Shadow DOM. */
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #050505; color: #222; }
+    body.claro { background: #ecebe6; } /* acompanha o tema do painel */
+    .demo-bar { display: flex; gap: 8px 16px; align-items: center; flex-wrap: wrap; padding: 10px 20px; background: #1f2937; color: #fff; font-size: 14px; }
+    .demo-bar .aviso { margin-right: auto; }
+    .demo-bar .detalhe { display: block; font-size: 12px; color: #cbd5e1; margin-top: 2px; }
+    .demo-bar a { color: #fff; }
+    .demo-bar button { font: inherit; padding: 4px 10px; border-radius: 6px; border: 1px solid #4b5563; background: #374151; color: #fff; cursor: pointer; }
+    main { max-width: 1440px; margin: 0 auto; padding: 16px; }
+    @media (max-width: 640px) { main { padding: 8px 0; } .demo-bar { padding: 10px 16px; } }
+  </style>
+</head>
+<body>
+  <div class="demo-bar">
+    <span class="aviso">
+      <b>Demonstração com dados 100% fictícios</b>
+      <span class="detalhe">Empresa, pessoas e valores são inventados. O que você alterar fica só neste navegador e volta ao original no dia seguinte.</span>
+    </span>
+    <a href="https://github.com/lucaselpidio/relatorio-comercial-dinamico">Código no GitHub</a>
+    <button id="reset" type="button" title="O painel pede uma senha, que aqui é 0000">Restaurar dados (senha: 0000)</button>
+  </div>
+
+  <main>
+    <relatorio-comercial id="painel" titulo="Relatório Comercial"></relatorio-comercial>
+  </main>
+
+  <script src="demo-dados.js"></script>
+  <script src="relatorio-comercial.js"></script>
+  <script>
+    // Os dados fictícios são gerados a partir da data de hoje: uma chave por dia mantém os filtros sempre preenchidos.
+    var PREFIXO = 'relatorio-comercial:demo:';
+    var chaveDeHoje = PREFIXO + RelatorioComercialDemo.hoje();
+    try {
+      Object.keys(localStorage).forEach(function (k) {
+        if (k.indexOf(PREFIXO) === 0 && k !== chaveDeHoje) localStorage.removeItem(k);
+      });
+    } catch (e) { /* armazenamento bloqueado: o painel segue só na memória */ }
+
+    // Em produção, troque por RelatorioComercial.createRestAdapter({ baseUrl: '/api/relatorio-comercial' }). Veja INTEGRACAO.md.
+    var adapter = RelatorioComercial.createLocalAdapter({
+      storageKey: chaveDeHoje,
+      seed: function () { return RelatorioComercialDemo.gerar(); },
+    });
+    var painel = document.getElementById('painel');
+    painel.configure({ adapter: adapter });
+
+    function fundo(t) { document.body.classList.toggle('claro', t === 'light'); }
+    fundo(painel.currentTheme);
+    painel.addEventListener('rc:theme', function (e) { fundo(e.detail.theme); });
+    document.getElementById('reset').addEventListener('click', function () { painel.resetLocalData(); });
+  </script>
+</body>
+</html>
