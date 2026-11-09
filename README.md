@@ -36,7 +36,7 @@ Todos os números de um período são comparados com o período anterior de mesm
 | | |
 |---|---|
 | ![Tendências: faturamento × meta por semana e por produto](docs/capturas/tendencias.png) | ![Dashboard de um agente: funil, taxas, renda dos leads e vendas](docs/capturas/dashboard-agente.png) |
-| ![Renda dos leads: distribuição por faixa, por produto e por semana](docs/capturas/renda-dos-leads.png) | ![Versão para celular](docs/capturas/celular.png) |
+| ![Renda dos leads: distribuição por faixa, por produto e por semana](docs/capturas/renda-dos-leads.png) | ![Indicadores do Painel no celular](docs/capturas/celular.png) |
 
 ## Regras de negócio que fazem diferença
 
