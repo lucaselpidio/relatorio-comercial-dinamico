@@ -1,6 +1,6 @@
 # Relatório Comercial Dinâmico
 
-Painel de acompanhamento comercial que substituiu uma planilha semanal de vendas: faturamento × meta por produto e por vendedor, tendências, funil diário de cada agente, qualificação de leads por renda e auditoria entre o que foi informado e o que foi vendido.
+Painel de acompanhamento comercial, o primeiro da área, criado junto com a padronização da planilha de vendas: faturamento × meta por produto e por vendedor, tendências, funil diário de cada agente, qualificação de leads por renda e auditoria entre o que foi informado e o que foi vendido.
 
 **[▶ Abrir a demonstração](https://lucaselpidio.github.io/relatorio-comercial-dinamico/)** · roda no navegador, sem instalar nada.
 
@@ -12,7 +12,7 @@ Painel de acompanhamento comercial que substituiu uma planilha semanal de vendas
 
 ## O problema
 
-A operação acompanhava as vendas numa planilha semanal. Ela funcionava até certo ponto, mas:
+A operação acompanhava as vendas só numa planilha semanal, sem nenhum painel. Ela funcionava até certo ponto, mas:
 
 - a semana era fixa: não dava para olhar "últimos 28 dias" ou "este mês" e comparar com o período anterior;
 - as metas eram só semanais e, ao mudar uma meta, o histórico mudava junto;
